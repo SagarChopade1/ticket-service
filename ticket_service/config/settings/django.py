@@ -34,7 +34,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = []
-
+SWAGGER_HOST_NAME=env("SWAGGER_HOST_NAME",default="localhost:8000")
 
 # Application definition
 
@@ -46,6 +46,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+
+# personal apps
+
+INSTALLED_APPS += [
+    "apiv1",]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

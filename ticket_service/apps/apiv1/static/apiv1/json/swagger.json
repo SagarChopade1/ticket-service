@@ -1,0 +1,33 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "REST Apis For Ticketing Service",
+    "version": "1.0.0",
+    "title": "Tickets API Doc",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "sagarchopade.dev@gmail.com"
+    },
+    "license": {
+      "name": "Proprietary License"
+    }
+  },
+  "host": "localhost:8000",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Users Management"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+
+  },
+  "definitions": {
+    
+  }
+}

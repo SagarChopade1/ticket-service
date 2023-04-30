@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bus Tracking Documentation</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'apiv1/css/gapi.css'%}" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <redoc spec-url="{% static 'apiv1/json/swagger.json'%}"></redoc>
+    <script src="{% static 'apiv1/json/redoc.standalone.js'%}"> </script>
+  </body>
+</html>
