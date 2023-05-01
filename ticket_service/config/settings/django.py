@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     "oauth2_provider",
     "rest_framework",
+    "django_filters",
 ]
 
 # personal apps
@@ -59,6 +60,7 @@ INSTALLED_APPS += [
     "apiv1",
     "users",
     "organizations",
+    "locations"
 ]
 
 MIDDLEWARE = [
