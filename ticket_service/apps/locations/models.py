@@ -15,3 +15,7 @@ class Location(TimeStampedModel):
 
     def __str__(self):
         return f"{self.id}-{self.name}-{self.is_active}"
+    
+    def destroy(self):
+        self.is_active = False
+        self.save()

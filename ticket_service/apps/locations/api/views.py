@@ -19,3 +19,7 @@ class LocationRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
     permission_classes = [IsAdminUser, IsManagerUser]
+
+    def perform_destroy(self, instance):
+        instance.destroy()
+
