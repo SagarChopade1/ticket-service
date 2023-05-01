@@ -17,6 +17,7 @@ class UserAdmin(UserAdmin):
                     "email",
                     "first_name",
                     "last_name",
+                    "role",
                 )
             },
         ),
@@ -27,7 +28,6 @@ class UserAdmin(UserAdmin):
                     "is_active",
                     "is_staff",
                     "is_superuser",
-                    "role",
                 )
             },
         ),
@@ -43,6 +43,7 @@ class UserAdmin(UserAdmin):
                     "email",
                     "first_name",
                     "last_name",
+                    "role",
                     "password1",
                     "password2",
                 ),
@@ -50,7 +51,7 @@ class UserAdmin(UserAdmin):
         ),
     )
 
-    list_display = ("email", "first_name", "last_name", "updated_at")
+    list_display = ("email", "first_name", "last_name","role", "updated_at")
     search_fields = ("email", "first_name", "last_name")
     ordering = ("email",)
 
