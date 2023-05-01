@@ -33,5 +33,3 @@ def test_logout_url():
     assert url == "/api/v1/users/logout/"
     resolver = resolve("/api/v1/users/logout/")
     assert resolver.view_name == "revoke_token"
-
-

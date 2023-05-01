@@ -210,8 +210,7 @@ def test_should_create_user_with_valid_details(auth_client):
         "email": "testuser@gmail.com",
         "first_name": "test",
         "last_name": "user",
-        "role":"PERSONNEL"
-
+        "role": "PERSONNEL",
     }
 
 

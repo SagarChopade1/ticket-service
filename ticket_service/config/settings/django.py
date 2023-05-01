@@ -58,6 +58,7 @@ INSTALLED_APPS += [
 INSTALLED_APPS += [
     "apiv1",
     "users",
+    "organizations",
 ]
 
 MIDDLEWARE = [

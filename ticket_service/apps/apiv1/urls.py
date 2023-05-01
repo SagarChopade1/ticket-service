@@ -6,7 +6,6 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path("users/", include("users.api.urls"), name="users_api"),
-
 ]
 
 if django.DEBUG:

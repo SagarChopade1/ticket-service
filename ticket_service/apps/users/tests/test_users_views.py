@@ -19,6 +19,6 @@ def test_user_profile_api(auth_client, user_profile_url):
         "email": "test@gmail.com",
         "first_name": "test",
         "last_name": "test",
-        "role":"PERSONNEL"
+        "role": "PERSONNEL",
     }
     assert expected_response == actual_response

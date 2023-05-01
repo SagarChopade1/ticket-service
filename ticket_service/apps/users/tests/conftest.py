@@ -59,5 +59,3 @@ def auth_client(client, app):
 @pytest.fixture
 def user_profile_url():
     return reverse("me")
-
-

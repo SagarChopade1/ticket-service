@@ -1,0 +1,12 @@
+name,address,is_active,transportation_types
+RouteMaster Logistics,123 Main St,1,Road
+ExpressWay Transportation Services,456 Oak Ave,0,Air
+UrbanMover Transit Co,789 Pine St,1,Rail
+SwiftShift Cargo Solutions,1010 Maple Rd,1,Water
+AquaLine Shipping Co,1111 Cedar Ln,0,Water
+Karen Wilson,2222 Elm St,1,Air
+ShipShape Freight Company,3333 Walnut Dr,1,Water
+MetroLink Transport Inc.,4444 Oakwood Blvd,0,Rail
+SkyRider Aviation Services,5555 Willow Ln,1,Air
+RailQuest Logistics,6666 Birch Rd,1,Rail
+Others,777 Sam Rd,1,Rail

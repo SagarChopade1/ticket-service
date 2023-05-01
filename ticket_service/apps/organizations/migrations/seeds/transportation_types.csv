@@ -1,0 +1,5 @@
+type,is_active
+Road,True
+Rail,True
+Air,True
+Water,True
