@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = [
+    path("users/", include("users.api.urls"), name="users_api"),
 
 ]
 
@@ -16,7 +17,7 @@ if django.DEBUG:
                 template_name="apiv1/redoc.html",
                 extra_context={
                     "schema_url": "openapi-schema",
-                    "host": django.SWAGGER_HOST_NAME  ,
+                    "host": django.SWAGGER_HOST_NAME,
                 },
             ),
             name="schema-redoc",

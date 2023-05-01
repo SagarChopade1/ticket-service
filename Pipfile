@@ -7,6 +7,9 @@ name = "pypi"
 django = "==4.1.5"
 django-environ = "==0.9.0"
 psycopg2-binary = "==2.9.4"
+django-oauth2-provider = "*"
+django-rest-framework-social-oauth2 = "*"
+pytest-django = "*"
 
 [dev-packages]
 ipdb = "==0.13.9"

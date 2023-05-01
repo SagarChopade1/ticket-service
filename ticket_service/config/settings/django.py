@@ -34,9 +34,9 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = []
-SWAGGER_HOST_NAME=env("SWAGGER_HOST_NAME",default="localhost:8000")
-
+SWAGGER_HOST_NAME = env("SWAGGER_HOST_NAME", default="localhost:8000")
 # Application definition
+AUTH_USER_MODEL = "users.User"
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -47,10 +47,18 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 ]
 
+# third party apps
+INSTALLED_APPS += [
+    "oauth2_provider",
+    "rest_framework",
+]
+
 # personal apps
 
 INSTALLED_APPS += [
-    "apiv1",]
+    "apiv1",
+    "users",
+]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -67,7 +75,7 @@ ROOT_URLCONF = "ticket_service.config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -75,9 +83,9 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-            ],
+            ]
         },
-    },
+    }
 ]
 
 WSGI_APPLICATION = "ticket_service.config.wsgi.application"
@@ -86,7 +94,7 @@ WSGI_APPLICATION = "ticket_service.config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {"default":env.db()}
+DATABASES = {"default": env.db()}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -106,6 +114,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAdminUser"],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
+    ],
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -123,10 +138,20 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+LOGIN_URL = "/user/login/"
 STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+OAUTH2_PROVIDER = {
+    "SCOPES": {"read": "Read scope"},
+    "ACCESS_TOKEN_EXPIRE_SECONDS": env(
+        "ACCESS_TOKEN_EXPIRE_SECONDS", default=60 * 60 * 1
+    ),
+    "REFRESH_TOKEN_EXPIRE_SECONDS": env(
+        "REFRESH_TOKEN_EXPIRE_SECONDS", default=60 * 60 * 3
+    ),
+}
