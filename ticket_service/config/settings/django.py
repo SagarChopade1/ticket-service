@@ -60,7 +60,8 @@ INSTALLED_APPS += [
     "apiv1",
     "users",
     "organizations",
-    "locations"
+    "locations",
+    "tickets",
 ]
 
 MIDDLEWARE = [
@@ -158,3 +159,6 @@ OAUTH2_PROVIDER = {
         "REFRESH_TOKEN_EXPIRE_SECONDS", default=60 * 60 * 3
     ),
 }
+
+GOOGLE_DISTANCE_MATRIX_KEY=env("GOOGLE_DISTANCE_MATRIX_KEY", default="")
+DISTANCE_MATRIC_CALCULATE_URL=env("DISTANCE_MATRIC_CALCULATE_URL", default="https://maps.googleapis.com/maps/api/distancematrix/json")
