@@ -19,3 +19,10 @@ class TicketSerializer(serializers.ModelSerializer):
         if float(data['price'])!=expected_price:
             raise serializers.ValidationError(f"Ticket price should be {expected_price}")
         return data
+
+
+class TicketSummarySerializer(serializers.Serializer):
+    location_name = serializers.CharField()
+    year= serializers.CharField()
+    month= serializers.CharField()
+    count = serializers.IntegerField()
