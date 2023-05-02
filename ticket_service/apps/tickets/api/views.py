@@ -89,29 +89,3 @@ class TicketCostSummeryView(generics.ListAPIView):
             price=Sum('price')
         )
         return queryset
-
-    def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        summary = {}
-        for ticket in queryset:
-            location = ticket['location_name']
-            month = ticket['month']
-            year = ticket['year']
-            price = ticket['price']
-            month_name = month_abbr[month] + '-' + str(year)
-            if location not in summary:
-                summary[location] = {month_name: price}
-            else:
-                summary[location][month_name] = price
-        data = []
-        for location, values in summary.items():
-            location_data = {'location': location}
-            for i in range(1, 13):
-                first_key = next(iter(values))
-                month_name = month_abbr[i] + '-' + first_key.split('-')[1]
-                if month_name in values:
-                    location_data[month_name] = '$ ' + str(values[month_name])
-                else:
-                    location_data[month_name] = '0 $'
-            data.append(location_data)
-        return Response(data)
