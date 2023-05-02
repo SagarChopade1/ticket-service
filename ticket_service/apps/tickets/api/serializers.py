@@ -26,3 +26,10 @@ class TicketSummarySerializer(serializers.Serializer):
     year= serializers.CharField()
     month= serializers.CharField()
     count = serializers.IntegerField()
+
+
+class TicketCostSummarySerializer(serializers.Serializer):
+    month = serializers.CharField()
+    year = serializers.IntegerField()
+    location_name = serializers.CharField()
+    price = serializers.DecimalField(max_digits=10, decimal_places=2)
