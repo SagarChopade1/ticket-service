@@ -11,6 +11,7 @@ class Ticket(TimeStampedModel):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_by_tickets')
     transportation_type = models.ForeignKey(Transportation, on_delete=models.CASCADE,related_name="transportation_tickets")
     passenger = models.ForeignKey(User, on_delete=models.CASCADE, related_name='passenger_tickets',null=True,blank=True)
+    passenger_name = models.CharField(max_length=255,blank=False, null=False,default="")
     source = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='source_tickets')
     destination = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='destination_tickets')
     seat_number = models.CharField(max_length=10,blank=False, null=False)

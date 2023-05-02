@@ -1,7 +1,7 @@
 from rest_framework.permissions import BasePermission
 
 
-class IsManagerUser(BasePermission):
+class IsManagerTypeUser(BasePermission):
     """
     Allows access only if user is a manager.
     """
@@ -13,7 +13,7 @@ class IsManagerUser(BasePermission):
             request.user.is_manager
             return request.user
 
-class IsAdminUser(BasePermission):
+class IsAdminTypeUser(BasePermission):
     """
     Allows access only if user is a manager.
     """

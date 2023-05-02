@@ -1,5 +1,5 @@
 from rest_framework import permissions, generics
-from users.permissions import IsAdminUser,IsManagerUser
+from users.permissions import IsAdminTypeUser,IsManagerTypeUser
 from locations.models import Location
 from .serializers import LocationSerializer
 
@@ -18,7 +18,7 @@ class LocationListCreateView(generics.ListCreateAPIView):
 class LocationRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
-    permission_classes = [IsAdminUser, IsManagerUser]
+    permission_classes = [IsAdminTypeUser, IsManagerTypeUser]
 
     def perform_destroy(self, instance):
         instance.destroy()

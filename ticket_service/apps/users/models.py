@@ -56,3 +56,13 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampedModel):
     @property
     def is_admin(self):
         return self.role==UserRoleType.ADMIN.name
+    
+    @property
+    def is_personnel(self):
+        return self.role==UserRoleType.PERSONNEL.name
+    
+    @property
+    def full_name(self):
+        if self.last_name:
+            return f"{self.first_name} {self.last_name}"
+        return self.first_name

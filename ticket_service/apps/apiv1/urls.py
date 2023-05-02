@@ -7,6 +7,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path("users/", include("users.api.urls"), name="users_api"),
     path("locations/", include("locations.api.urls"), name="locations_api"),
+    path("tickets/", include("tickets.api.urls"), name="tickets_api"),
 ]
 
 if django.DEBUG:
