@@ -42,7 +42,7 @@ class TicketListCreateView(generics.ListCreateAPIView):
 class TicketUpdateView(generics.UpdateAPIView):
     queryset = Ticket.objects.filter(is_cancelled=False)
     serializer_class = TicketUpdateSerializer
-    lookup_field = 'id'
+    lookup_field = 'pk'
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -95,4 +95,18 @@ class TicketCostSummeryView(generics.ListAPIView):
             month=ExtractMonth('journey_start_time')).annotate(
             price=Sum('price')
         )
+        return queryset
+
+
+class TicketDetailsView(generics.RetrieveAPIView):
+    queryset = Ticket.objects.all()
+    serializer_class = TicketSerializer
+    lookup_field = 'pk'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.request.user.is_manager:
+            return queryset.filter(created_by=self.request.user)
+        if self.request.user.is_personnel:
+            return queryset.filter(passenger=self.request.user)
         return queryset
