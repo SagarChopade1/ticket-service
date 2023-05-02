@@ -3,7 +3,7 @@ from users.permissions import IsAdminTypeUser,IsManagerTypeUser
 from rest_framework import generics, status
 from rest_framework.response import Response
 from tickets.models import Ticket
-from .serializers import TicketSerializer,TicketSummarySerializer,TicketCostSummarySerializer
+from .serializers import *
 from rest_framework.permissions import IsAdminUser 
 from tickets.utils import  QrCode
 from .filters import TicketFilter,TicketSummeryFilter
@@ -11,7 +11,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from django.db.models import Count,  F,Sum
 from django.db.models.functions import ExtractYear,ExtractMonth
-from calendar import month_abbr
+from django.shortcuts import get_object_or_404
 class TicketListCreateView(generics.ListCreateAPIView):
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
@@ -39,12 +39,19 @@ class TicketListCreateView(generics.ListCreateAPIView):
         if self.request.user.is_personnel:
             return self.queryset.filter(passenger=self.request.user)
         return self.queryset
-class TicketDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Ticket.objects.all()
-    serializer_class = TicketSerializer
-    permission_classes = [IsAdminUser,IsAdminTypeUser, IsManagerTypeUser]
+class TicketUpdateView(generics.UpdateAPIView):
+    queryset = Ticket.objects.filter(is_cancelled=False)
+    serializer_class = TicketUpdateSerializer
+    lookup_field = 'id'
 
-
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.request.user.is_manager:
+            return queryset.filter(created_by=self.request.user)
+        if self.request.user.is_personnel:
+            return queryset.filter(passenger=self.request.user)
+        return queryset
+    
 class TicketCountSummaryView(generics.ListAPIView):
     queryset = Ticket.objects.all()
     serializer_class = TicketSummarySerializer

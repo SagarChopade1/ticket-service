@@ -33,3 +33,9 @@ class TicketCostSummarySerializer(serializers.Serializer):
     year = serializers.IntegerField()
     location_name = serializers.CharField()
     price = serializers.DecimalField(max_digits=10, decimal_places=2)
+
+
+class TicketUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ticket
+        fields = ('is_cancelled',)
