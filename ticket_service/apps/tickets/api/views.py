@@ -53,6 +53,10 @@ class TicketCountSummaryView(generics.ListAPIView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        if self.request.user.is_manager:
+            queryset=queryset.filter(created_by=self.request.user)
+        if self.request.user.is_personnel:
+            queryset=queryset.filter(passenger=self.request.user)
         queryset = queryset.annotate(
             location_name=F('source__name'),
             year=ExtractYear('journey_start_time'),
@@ -75,6 +79,10 @@ class TicketCostSummeryView(generics.ListAPIView):
     
     def get_queryset(self):
         queryset = super().get_queryset()
+        if self.request.user.is_manager:
+            queryset=queryset.filter(created_by=self.request.user)
+        if self.request.user.is_personnel:
+            queryset=queryset.filter(passenger=self.request.user)
         queryset= queryset.values(location_name=F('source__name'),
             year=ExtractYear('journey_start_time'),
             month=ExtractMonth('journey_start_time')).annotate(
